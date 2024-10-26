@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     // Делаем переменную публичной, чтобы она отображалась в инспекторе
-    public Transform target; // Машина, за которой будет следовать камера
+    public Transform target; // Машина, за которой будет следовать камера 
     public Vector3 offset = new Vector3(0, 2, -10); // Смещение камеры
     public float smoothSpeed = 0.125f; // Скорость сглаживания
 
