@@ -36,7 +36,7 @@ public class SimpleCarController : MonoBehaviour
         #region Debug
         // рисуем линию вектора скорости
         Vector3 velocityDirection = new Vector2(transform.position.x, transform.position.y) + rb.velocity;
-        Debug.Log($"{rb.velocity} = {rb.velocity.magnitude}");
+        //Debug.Log($"{rb.velocity} = {rb.velocity.magnitude}");
         Debug.DrawLine(transform.position, velocityDirection, Color.red);
         #endregion
     }
