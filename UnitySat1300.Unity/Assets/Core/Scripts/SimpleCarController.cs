@@ -10,6 +10,11 @@ public class SimpleCarController : MonoBehaviour
     public float motorForce = 1500f; // Сила, с которой машина будет двигаться
     public float rotationSpeed = 15f; // Скорость вращения машины при движении
     public float maxSpeed = 20f; // Максимальная скорость машины
+    public bool isGrounded;
+    public float zAngleLimit = 30; 
+    public float currentZangle = 0;
+
+
 
     public Transform forwardWheel;
     public Transform backWheel;
@@ -22,9 +27,21 @@ public class SimpleCarController : MonoBehaviour
     }
 
     void Update()
-    {
+    {        
+        // Проверяем, находится ли машина на земле 
+        currentZangle = transform.eulerAngles.z;
+        if(currentZangle > 180) // Если угол больше 180, то приводим его к отрицательному значению
+        {
+            currentZangle = currentZangle - 360; // Приводим угол к отрицательному значению
+        }
+        isGrounded = Mathf.Abs(currentZangle) < Mathf.Abs(zAngleLimit); // Если угол машины меньше 30 градусов, то машина на земле
+
+
         float moveInput = Input.GetAxis("Horizontal"); // Ввод с клавиш "A/D" или "стрелки влево/вправо"
-        HandleMovement(moveInput);
+        if (isGrounded)
+        {
+            HandleMovement(moveInput);
+        }
         HandleRotation(moveInput);
 
         speed = rb.velocity.magnitude;
@@ -32,6 +49,9 @@ public class SimpleCarController : MonoBehaviour
         {
             RotateWheel();
         }
+
+
+
 
         #region Debug
         // рисуем линию вектора скорости
@@ -44,7 +64,7 @@ public class SimpleCarController : MonoBehaviour
     private void RotateWheel()
     {
         // Вращаем переднее колесо
-        forwardWheel.eulerAngles = new Vector3(0, 0, -rb.velocity.x); 
+        forwardWheel.eulerAngles = new Vector3(0, 0, -rb.velocity.x);
 
     }
 
