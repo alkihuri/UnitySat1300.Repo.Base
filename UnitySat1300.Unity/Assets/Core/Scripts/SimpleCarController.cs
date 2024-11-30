@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 public class SimpleCarController : MonoBehaviour
 {
@@ -11,7 +11,7 @@ public class SimpleCarController : MonoBehaviour
     public float rotationSpeed = 15f; // Скорость вращения машины при движении
     public float maxSpeed = 20f; // Максимальная скорость машины
     public bool isGrounded;
-    public float zAngleLimit = 30; 
+    public float zAngleLimit = 30;
     public float currentZangle = 0;
 
 
@@ -25,16 +25,31 @@ public class SimpleCarController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
     }
-
+    float timer = 2;
     void Update()
-    {        
+    {
         // Проверяем, находится ли машина на земле 
         currentZangle = transform.eulerAngles.z;
-        if(currentZangle > 180) // Если угол больше 180, то приводим его к отрицательному значению
+        if (currentZangle > 180) // Если угол больше 180, то приводим его к отрицательному значению
         {
             currentZangle = currentZangle - 360; // Приводим угол к отрицательному значению
         }
         isGrounded = Mathf.Abs(currentZangle) < Mathf.Abs(zAngleLimit); // Если угол машины меньше 30 градусов, то машина на земле
+
+        if (isGrounded == false) // проверяем перевернулась ли машиша 
+        {
+            timer = timer - Time.deltaTime; // вычитаем из значения таймера время обработки кадра ¬16мс
+            if(timer < 0) // если таймер закончился
+            { 
+                string currentScene = SceneManager.GetActiveScene().name; // перегружаем сцену
+                SceneManager.LoadScene(currentScene);
+                timer = 2; // обновляем значение таймера
+            }
+        }
+        else // но если машина не "пролежала" на крыше 2 секунды - то  обнуляем счетчик
+        {
+            timer = 2;
+        }
 
 
         float moveInput = Input.GetAxis("Horizontal"); // Ввод с клавиш "A/D" или "стрелки влево/вправо"
