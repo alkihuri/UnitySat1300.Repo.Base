@@ -14,6 +14,7 @@ public class SimpleCarController : MonoBehaviour
     public float zAngleLimit = 30;
     public float currentZangle = 0;
 
+    public LayerMask groundLayer;
 
 
     public Transform forwardWheel;
@@ -34,13 +35,37 @@ public class SimpleCarController : MonoBehaviour
         {
             currentZangle = currentZangle - 360; // Приводим угол к отрицательному значению
         }
-        isGrounded = Mathf.Abs(currentZangle) < Mathf.Abs(zAngleLimit); // Если угол машины меньше 30 градусов, то машина на земле
+
+        //isGrounded = Mathf.Abs(currentZangle) < Mathf.Abs(zAngleLimit); // Если угол машины меньше 30 градусов, то машина на земле
+
+        Vector2 raycastDirection = new Vector2(0, -1);
+        Vector2 relativeDirection = transform.TransformDirection(raycastDirection);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, relativeDirection, 1.5f, groundLayer);
+
+        if (hit.collider != null)
+        {
+
+            if (hit.distance < 1.5f) // Если луч столкнулся с землей
+            {
+                isGrounded = true;
+                Debug.DrawLine(transform.position, hit.point, Color.green, 1); // дебаг линия
+            }
+            else
+            {
+                isGrounded = false;
+            }
+
+        }
+        else
+        {
+            isGrounded = false;
+        }
 
         if (isGrounded == false) // проверяем перевернулась ли машиша 
         {
             timer = timer - Time.deltaTime; // вычитаем из значения таймера время обработки кадра ¬16мс
-            if(timer < 0) // если таймер закончился
-            { 
+            if (timer < 0) // если таймер закончился
+            {
                 string currentScene = SceneManager.GetActiveScene().name; // перегружаем сцену
                 SceneManager.LoadScene(currentScene);
                 timer = 2; // обновляем значение таймера
