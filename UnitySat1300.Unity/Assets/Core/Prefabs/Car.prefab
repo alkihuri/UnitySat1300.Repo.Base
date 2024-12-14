@@ -517,6 +517,12 @@ MonoBehaviour:
   motorForce: 1500
   rotationSpeed: 15
   maxSpeed: 20
+  isGrounded: 0
+  zAngleLimit: 30
+  currentZangle: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
   forwardWheel: {fileID: 1693321414}
   backWheel: {fileID: 2091431476}
 --- !u!50 &1888275335024675681
