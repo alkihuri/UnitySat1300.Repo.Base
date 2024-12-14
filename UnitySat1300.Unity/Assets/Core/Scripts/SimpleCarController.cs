@@ -29,14 +29,14 @@ public class SimpleCarController : MonoBehaviour
     float timer = 2;
     void Update()
     {
-        // Проверяем, находится ли машина на земле 
-        currentZangle = transform.eulerAngles.z;
-        if (currentZangle > 180) // Если угол больше 180, то приводим его к отрицательному значению
-        {
-            currentZangle = currentZangle - 360; // Приводим угол к отрицательному значению
-        }
+        //// Проверяем, находится ли машина на земле 
+        //currentZangle = transform.eulerAngles.z;
+        //if (currentZangle > 180) // Если угол больше 180, то приводим его к отрицательному значению
+        //{
+        //    currentZangle = currentZangle - 360; // Приводим угол к отрицательному значению
+        //}
 
-        //isGrounded = Mathf.Abs(currentZangle) < Mathf.Abs(zAngleLimit); // Если угол машины меньше 30 градусов, то машина на земле
+        ////isGrounded = Mathf.Abs(currentZangle) < Mathf.Abs(zAngleLimit); // Если угол машины меньше 30 градусов, то машина на земле
 
         Vector2 raycastDirection = new Vector2(0, -1);
         Vector2 relativeDirection = transform.TransformDirection(raycastDirection);
@@ -44,16 +44,7 @@ public class SimpleCarController : MonoBehaviour
 
         if (hit.collider != null)
         {
-
-            if (hit.distance < 1.5f) // Если луч столкнулся с землей
-            {
-                isGrounded = true;
-                Debug.DrawLine(transform.position, hit.point, Color.green, 1); // дебаг линия
-            }
-            else
-            {
-                isGrounded = false;
-            }
+            isGrounded = hit.distance < 1.5f; // Если дистанция до земли меньше 1.5, то машина на земле
 
         }
         else
