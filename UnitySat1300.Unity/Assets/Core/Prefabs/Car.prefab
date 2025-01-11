@@ -514,9 +514,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  motorForce: 1500
+  motorForce: 47000
   rotationSpeed: 15
   maxSpeed: 20
+  isGrounded: 0
+  zAngleLimit: 30
+  currentZangle: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
   forwardWheel: {fileID: 1693321414}
   backWheel: {fileID: 2091431476}
 --- !u!50 &1888275335024675681
@@ -531,7 +537,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 50
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
