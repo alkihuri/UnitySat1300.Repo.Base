@@ -157,7 +157,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1781104779678882316}
         m_TargetAssemblyTypeName: RestartButton, Assembly-CSharp
         m_MethodName: RestarLevel
         m_Mode: 1
