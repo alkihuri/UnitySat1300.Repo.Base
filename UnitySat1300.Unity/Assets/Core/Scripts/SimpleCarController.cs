@@ -106,8 +106,18 @@ public class SimpleCarController : MonoBehaviour
 
     private void RotateWheel()
     {
+        float speed = rb.velocity.magnitude;
         // Вращаем переднее колесо
-        forwardWheel.eulerAngles = new Vector3(0, 0, -rb.velocity.x);
+        if (rb.velocity.x > 1) // Если машина движется вправо
+        {
+            forwardWheel.localEulerAngles   -= new Vector3(0, 0, 1 * speed);
+            backWheel.localEulerAngles      -= new Vector3(0, 0, 1 * speed);
+        }
+        else if (rb.velocity.x < 1) // Если машина движется влево   
+        {
+            forwardWheel.localEulerAngles   += new Vector3(0, 0, 1 * speed);
+            backWheel.localEulerAngles      += new Vector3(0, 0, 1 * speed);
+        }
 
     }
 
