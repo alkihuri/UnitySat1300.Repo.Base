@@ -3022,8 +3022,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCar: {fileID: 595973633}
+  inputHandler: {fileID: 0}
   startPostion: {x: 0, y: 0, z: 0}
   startRotation: {x: 0, y: 0, z: 0}
+  inputHandlerScript: {fileID: 0}
 --- !u!1 &735070637
 GameObject:
   m_ObjectHideFlags: 0

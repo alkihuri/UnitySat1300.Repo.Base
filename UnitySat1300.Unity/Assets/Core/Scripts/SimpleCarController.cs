@@ -22,6 +22,8 @@ public class SimpleCarController : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    [SerializeField] private InputHandler inputHandler;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -68,7 +70,17 @@ public class SimpleCarController : MonoBehaviour
         }
 
 
-        float moveInput = Input.GetAxis("Horizontal"); // Ввод с клавиш "A/D" или "стрелки влево/вправо"
+        float moveInput;
+        if (inputHandler != null) // Если InputHandler не равен null, то используем его
+        {
+            moveInput = inputHandler.Horizontal; // Получаем значение Horizontal из InputHandler
+        }
+        else
+        {
+            moveInput = Input.GetAxis("Horizontal"); // иначе получаем значение Horizontal из Input
+            inputHandler = FindObjectOfType<InputHandler>(); // ищем InputHandler в сцене   
+        }
+
         if (isGrounded)
         {
             HandleMovement(moveInput);

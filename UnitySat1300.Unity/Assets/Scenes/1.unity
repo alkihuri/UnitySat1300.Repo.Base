@@ -1695,7 +1695,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 519420032, guid: f382916c1424b0c4288b748532f2829a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.739662
+      value: 13.735115
       objectReference: {fileID: 0}
     - target: {fileID: 519420032, guid: f382916c1424b0c4288b748532f2829a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1703,7 +1703,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1374121589, guid: f382916c1424b0c4288b748532f2829a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.739662
+      value: 13.735115
       objectReference: {fileID: 0}
     - target: {fileID: 1374121589, guid: f382916c1424b0c4288b748532f2829a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6550,6 +6550,10 @@ PrefabInstance:
       propertyPath: playerCar
       value: 
       objectReference: {fileID: 474841791}
+    - target: {fileID: 1492529507008707717, guid: f36140abad1d3f645a6c3cd0b104c67d, type: 3}
+      propertyPath: inputHandler
+      value: 
+      objectReference: {fileID: 4350077318741309517, guid: 05c356b61ee24174dbe5c0086a755a40, type: 3}
     - target: {fileID: 1492529507008707718, guid: f36140abad1d3f645a6c3cd0b104c67d, type: 3}
       propertyPath: m_Name
       value: --WORLD--
